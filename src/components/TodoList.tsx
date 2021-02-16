@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import { ITodo } from "../interfaces";
-import OneItem from "../components/OneItem";
+import Item from "./Item";
 
 const useStyles = makeStyles({
   root: {
@@ -20,9 +20,10 @@ type TodoListProps = {
   todos: ITodo[];
   toggleDone(id: number): void;
   remove(id: number): void;
+  handleTodoUpdate(event: React.ChangeEvent<HTMLInputElement>, id: number): void;
 };
 
-const TodoList: React.FC<TodoListProps> = ({ todos, toggleDone, remove }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, toggleDone, remove, handleTodoUpdate }) => {
   const styles = useStyles();
   if (todos.length === 0)
     return (
@@ -30,17 +31,18 @@ const TodoList: React.FC<TodoListProps> = ({ todos, toggleDone, remove }) => {
         <Typography variant="h4">No task...</Typography>
       </Container>
     );
-  else
     return (
       <Container className={styles.root}>
         {todos.map((item) => (
-          <OneItem
+          <Item
             key={item.id}
             title={item.title}
             id={item.id}
+            time={item.time}
             done={item.done}
             onDone={toggleDone}
             onRemove={remove}
+            handleTodoUpdate={handleTodoUpdate}
           />
         ))}
       </Container>

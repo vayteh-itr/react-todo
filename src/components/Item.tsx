@@ -6,6 +6,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import InputBase from '@material-ui/core/InputBase';
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
@@ -34,15 +35,17 @@ const useStyles = makeStyles({
   },
 });
 
-interface IOneItem {
+interface IItem {
   title: string | symbol;
   id: number;
+  time: string;
   done: boolean;
   onDone(id: number): void;
   onRemove(id: number): void;
+  handleTodoUpdate: (event: React.ChangeEvent<HTMLInputElement>, id: string) => void;
 }
 
-const OneItem: React.FC<IOneItem> = ({ title, id, done, onDone, onRemove }) => {
+const Item: React.FC<IItem> = ({ title, id, time, done, onDone, onRemove, handleTodoUpdate }) => {
   const styles = useStyles();
   return (
     <Grid
@@ -52,12 +55,19 @@ const OneItem: React.FC<IOneItem> = ({ title, id, done, onDone, onRemove }) => {
       spacing={1}
       className={done ? styles.root : styles.rootDone}
     >
-      <Grid item xs={10}>
-        <Typography
+      <Grid item xs={5}>
+        <InputBase
           className={done ? styles.titleDone : styles.title}
+          inputProps={{ 'aria-label': 'naked' }}
+          value={title}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleTodoUpdate(event, id)}
+    />
+      </Grid>
+      <Grid item xs={5}>
+        <Typography
           variant="h5"
         >
-          {title}
+          {time}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -84,4 +94,4 @@ const OneItem: React.FC<IOneItem> = ({ title, id, done, onDone, onRemove }) => {
   );
 };
 
-export default OneItem;
+export default Item;

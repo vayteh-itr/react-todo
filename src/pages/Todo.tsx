@@ -30,6 +30,7 @@ const Todo: React.FC = () => {
       const newItem: ITodo = {
         title: title,
         id: Date.now(),
+        time: new Date().toLocaleString(),
         done: false,
       };
       setTodos((prev) => [newItem, ...prev]);
@@ -49,10 +50,23 @@ const Todo: React.FC = () => {
     setTodos((prev) => prev.filter((el) => el.id !== id));
   };
 
+  const handleTodoUpdate = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    const newItem: ITodo[] = [...todos]
+    newItem.find((todo: ITodo, index:number) => {
+    if (todo.id === id) {
+      todo.title = event.target.value
+      todo.time = new Date().toLocaleString() + ' (edited)'
+      const el = newItem.splice(index, 1)
+      newItem.unshift(el[0])
+    }
+    setTodos(newItem)
+    });
+  }
+
   return (
       <Container maxWidth="md" className={classes.root}>
         <TodoForm onAdd={addTodos} />
-        <TodoList todos={todos} toggleDone={toggleDone} remove={remove} />
+        <TodoList todos={todos} toggleDone={toggleDone} remove={remove} handleTodoUpdate={handleTodoUpdate} />
       </Container>
   );
 };
