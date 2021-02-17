@@ -42,7 +42,7 @@ interface IItem {
   done: boolean;
   onDone(id: number): void;
   onRemove(id: number): void;
-  handleTodoUpdate: (event: React.ChangeEvent<HTMLInputElement>, id: string) => void;
+  handleTodoUpdate: (event: React.ChangeEvent<HTMLInputElement>, id: number) => void;
 }
 
 const Item: React.FC<IItem> = ({ title, id, time, done, onDone, onRemove, handleTodoUpdate }) => {

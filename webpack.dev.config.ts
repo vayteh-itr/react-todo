@@ -13,7 +13,7 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.(ts)x?$/i,
+        test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -29,7 +29,7 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -40,7 +40,7 @@ const config: webpack.Configuration = {
       async: false,
     }),
     new ESLintPlugin({
-      extensions: ["ts", "tsx"],
+      extensions: ["js", "jsx", "ts", "tsx"],
     }),
   ],
   devtool: "inline-source-map",
