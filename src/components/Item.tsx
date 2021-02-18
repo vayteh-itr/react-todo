@@ -1,13 +1,8 @@
 import React from "react";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
 import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import IconButton from "@material-ui/core/IconButton";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Typography from "@material-ui/core/Typography";
+import { FormControlLabel, Checkbox, Typography, IconButton, InputBase, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import InputBase from '@material-ui/core/InputBase';
-import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   root: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import TextField from "@material-ui/core/TextField";
 
@@ -9,12 +9,12 @@ interface ToDoProps {
 const TodoForm: React.FC<ToDoProps> = (props) => {
   const [title, setTitle] = useState<string>('');
 
-  const keyPressHandler = (event: React.KeyboardEvent) => {
+  const keyPressHandler = useCallback((event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       props.onAdd(title.trim());
       setTitle('');
     }
-  }
+  },[title])
 
   return (
     <TextField
@@ -25,7 +25,7 @@ const TodoForm: React.FC<ToDoProps> = (props) => {
       value={title}
       fullWidth={true}
       onChange={(event) => setTitle(event.target.value)}
-      onKeyPress={(event) => keyPressHandler(event)}
+      onKeyPress={keyPressHandler}
     />
   );
 };

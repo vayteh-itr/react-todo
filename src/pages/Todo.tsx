@@ -26,7 +26,7 @@ const Todo: React.FC = () => {
   }, [todos]);
 
   const addTodos = (title: string) => {
-    if (title !== "" && title) {
+    if (title) {
       const newItem: ITodo = {
         title: title,
         id: Date.now(),
