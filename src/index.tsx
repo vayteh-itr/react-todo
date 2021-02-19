@@ -4,8 +4,6 @@ import Todo from './pages/Todo';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Todo />
-  </React.StrictMode>,
+    <Todo />,
   document.getElementById("root")
 );

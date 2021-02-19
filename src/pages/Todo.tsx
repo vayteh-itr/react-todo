@@ -17,8 +17,12 @@ const Todo: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('todos')!) as ITodo[];
-    setTodos(saved);
+    if(localStorage.getItem("todos") === null){
+    (localStorage.setTodos("todos", JSON.stringify([])))
+    }
+    else
+    {const saved = JSON.parse(localStorage.getItem('todos')!) as ITodo[];
+    setTodos(saved)}
   }, []);
 
   useEffect(() => {
@@ -38,12 +42,11 @@ const Todo: React.FC = () => {
   };
 
   const toggleDone = (id: number) => {
-    setTodos((prev) =>
-      prev.map((el) => {
+      const toogleTodo = todos.map((el) => {
         if (el.id === id) el.done = !el.done;
         return el;
       })
-    );
+      setTodos(toogleTodo);
   };
 
   const remove = (id: number) => {

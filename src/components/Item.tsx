@@ -17,8 +17,10 @@ const useStyles = makeStyles({
     paddingLeft: "20px",
   },
   titleDone: {
-    paddingLeft: "20px",
-    textDecorationLine: "line-through",
+    '& input': {
+      paddingLeft: "20px",
+      textDecorationLine: "line-through",
+    },
   },
   rootDone: {
     backgroundColor: "#CDECF8",

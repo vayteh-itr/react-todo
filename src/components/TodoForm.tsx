@@ -14,7 +14,7 @@ const TodoForm: React.FC<ToDoProps> = (props) => {
       props.onAdd(title.trim());
       setTitle('');
     }
-  },[title])
+  },[title, props])
 
   return (
     <TextField
